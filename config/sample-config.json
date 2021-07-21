@@ -1,0 +1,36 @@
+{
+    "cron": {"jobs": []},
+    "settings": {"public": {}},
+    "smtp": {},
+    "name": "codigos_postais_pt",
+    "setup": {
+        "schema": {
+            "execution": true,
+            "auto_create": true
+        },
+        "scripts": {"execution": true},
+        "enabled": true
+    },
+    "language": "pt_PT",
+    "firebase": {
+        "app_name": "",
+        "database_url": "",
+        "key_file": "",
+        "listener_secret": ""
+    },
+    "locale": "pt_PT",
+    "remote": {},
+    "commands": [{
+        "path": "ui",
+        "command": "npm run watch",
+        "enabled": true
+    }],
+    "db": {"default": {
+        "password": "Secr3t$.",
+        "engine": "pg",
+        "port": "5432",
+        "host": "localhost",
+        "name": "codigos_postais_pt",
+        "username": "codigos_postais_pt"
+    }}
+}
