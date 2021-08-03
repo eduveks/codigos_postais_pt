@@ -11,8 +11,8 @@ if (pagination != null) {
     page.size = pagination.getInt('pageSize', pageSize)
     page.start = (pagination.getInt('current', 1) - 1) * page.size
 }
-if (page.size > pageSize) {
-    page.size = pageSize
+if (page.size > 100) {
+    page.size = 100
 }
 
 const queryFilter = _val.list()

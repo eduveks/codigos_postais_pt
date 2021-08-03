@@ -12,10 +12,6 @@ import Highlighter from 'react-highlight-words';
 
 import _service from '@netuno/service-client';
 
-_service.config({
-    prefix: netuno.config.urlServices
-});
-
 const { Column } = Table;
 
 const pageSize = 10;

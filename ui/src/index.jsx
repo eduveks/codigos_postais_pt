@@ -5,13 +5,13 @@ import _service from '@netuno/service-client';
 
 import DashboardContainer from "./containers/DashboardContainer/index.jsx";
 
-const dashboardDiv = document.getElementById("app-dashboard");
-
-const dashboardContainer = dashboardDiv ? ReactDOM.render(<DashboardContainer />, dashboardDiv) : false;
-
 _service.config({
     prefix: netuno.config.urlServices
 });
+
+const dashboardDiv = document.getElementById("app-dashboard");
+
+const dashboardContainer = dashboardDiv ? ReactDOM.render(<DashboardContainer />, dashboardDiv) : false;
 
 netuno.addNavigationLoad(() => {
     $('[netuno-navigation]').find('a').on('netuno:click', (e)=> {
