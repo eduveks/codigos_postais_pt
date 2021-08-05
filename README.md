@@ -96,7 +96,7 @@ No terminal dentro da pasta da aplicação (`netuno/apps/codigos_postais_pt`), c
 cp config/exemplo.json config/_development.json
 ```
 
-Editar e ajustar as configurações de base de dados neste novo ficheiro `_development.json`, especialmente o utilizador e a palavra-passe.
+Editar e ajustar as configurações de base de dados neste novo ficheiro `_development.json`, especialmente por o valor correto para o utilizador (`db.default.username`) e a palavra-passe (`db.default.password`).
 
 ### Executar
 
