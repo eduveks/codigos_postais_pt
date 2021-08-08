@@ -1,5 +1,6 @@
 
-/**
- * FIREBASE - Set your listeners
- */
-// _firebase.listener("my-test", _header.baseURL() + "/services/firebase/listener/my-test.netuno")
+_storage.filesystem('server', 'importacao.json').file().output().writeAndClose(
+    _val.map()
+        .set("execucao", false)
+        .toJSON()
+)

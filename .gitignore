@@ -19,4 +19,5 @@ config/_development.json
 config/_production.json
 
 storage/filesystem/server/*.csv
+storage/filesystem/server/importacao.json
 
