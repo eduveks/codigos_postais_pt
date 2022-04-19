@@ -2,6 +2,8 @@
 const importacaoCodigosPostais = () => {
     _out.println(`<p><h2>Códigos Postais</h2></p>`)
     _out.flush()
+
+    const batchCodigosPostaisInserting = _val.list()
     
     const fileReader = _storage.filesystem('server', 'codigos_postais.csv')
           .file()
@@ -12,9 +14,9 @@ const importacaoCodigosPostais = () => {
     let csvPrimeiraLinha = null
 
     const dbBatchCodigoPostal = _db.batch(`
-    insert into codigo_postal(id, localidade_id, numero, extensao, active)
-    values(nextval('codigo_postal_id'), ?, ?, ?, true)
-`)
+      INSERT INTO codigo_postal(id, localidade_id, numero, extensao, active)
+      VALUES(NEXTVAL('codigo_postal_id'), ?, ?, ?, TRUE)
+    `)
 
     let counter = 0
 
@@ -68,7 +70,21 @@ const importacaoCodigosPostais = () => {
             } else {
                 dbLocalidadeId = dbLocalidade.getInt('id')
             }
-            dbBatchCodigoPostal.put(dbLocalidadeId, dadosLinha.getString('num_cod_postal'), dadosLinha.getString('ext_cod_postal'))
+            const dbCodigoPostal = _db.queryFirst(
+                `SELECT * FROM codigo_postal WHERE numero = ? AND extensao = ?`, 
+                dadosLinha.getString('num_cod_postal'), dadosLinha.getString('ext_cod_postal')
+            )
+            if (dbCodigoPostal == null
+                && !batchCodigosPostaisInserting.contains(`${dadosLinha.getString('num_cod_postal')}-${dadosLinha.getString('ext_cod_postal')}`)) {
+                batchCodigosPostaisInserting.add(
+                    `${dadosLinha.getString('num_cod_postal')}-${dadosLinha.getString('ext_cod_postal')}`
+                )
+                dbBatchCodigoPostal.put(
+                    dbLocalidadeId,
+                    dadosLinha.getString('num_cod_postal'),
+                    dadosLinha.getString('ext_cod_postal')
+                )
+            }
         }
         if (counter % 1000 == 0) {
             _out.print('.')

@@ -1,0 +1,61 @@
+/**
+  *
+  *  CODE GENERATED AUTOMATICALLY
+  *
+  *  THIS FILE SHOULD NOT BE EDITED BY HAND
+  *
+  */
+
+_form.createIfNotExists(
+	_val.init()
+	.set("big", false)
+	.set("control_active", true)
+	.set("control_group", false)
+	.set("control_user", false)
+	.set("description", "")
+	.set("displayname", "Local")
+	.set("export_id", false)
+	.set("export_json", true)
+	.set("export_lastchange", false)
+	.set("export_uid", true)
+	.set("export_xls", true)
+	.set("export_xml", true)
+	.set("firebase", "")
+	.set("name", "arteria_local")
+	.set("parent_uid", "a4437d0b-036b-4c8a-b29e-d93432b49f47")
+	.set("reorder", 0)
+	.set("report", false)
+	.set("show_id", true)
+	.set("uid", "b829b43e-8e89-4b7c-b269-fb9f1719d363")
+)
+_form.createComponentIfNotExists(
+	"b829b43e-8e89-4b7c-b269-fb9f1719d363",
+	_val.init()
+	.set("colspan", 0)
+	.set("description", "")
+	.set("displayname", "Local")
+	.set("firebase", "")
+	.set("group_id", 0)
+	.set("height", 0)
+	.set("max", 0)
+	.set("min", 0)
+	.set("name", "local")
+	.set("notnull", true)
+	.set("primarykey", true)
+	.set("properties", "{\"MASK_REVERSE\":{\"default\":\"false\",\"type\":\"BOOLEAN\",\"value\":\"false\"},\"MASK_SELECTONFOCUS\":{\"default\":\"false\",\"type\":\"BOOLEAN\",\"value\":\"false\"},\"MASK\":{\"default\":\"\",\"type\":\"STRING\",\"value\":\"\"}}")
+	.set("rowspan", 0)
+	.set("tdheight", 0)
+	.set("tdwidth", 0)
+	.set("type", "text")
+	.set("uid", "ce323dbd-14b4-4725-bfcb-31ed0034128a")
+	.set("user_id", 0)
+	.set("whenedit", true)
+	.set("whenexport", true)
+	.set("whenfilter", true)
+	.set("whennew", true)
+	.set("whenresult", true)
+	.set("whenview", true)
+	.set("width", 0)
+	.set("x", 1)
+	.set("y", 1)
+)

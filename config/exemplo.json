@@ -1,6 +1,26 @@
 {
-    "cron": {"jobs": []},
-    "settings": {"public": {}},
+    "cron": {
+        "jobs": [
+            {
+                "name": "gps-indexer",
+                "config": "0 * * * * ?",
+                "url": "/services/jobs/gps-indexer",
+                "enabled": false
+            },
+            {
+                "name": "gps-bing",
+                "config": "0 */5 * * * ?",
+                "url": "/services/jobs/gps-bing",
+                "enabled": false
+            }
+        ]
+    },
+    "settings": {
+        "public": {},
+        "bing": {
+            "key": "$$--SUA-CHAVE-BING-AQUI--$$"
+        }
+    },
     "smtp": {},
     "name": "codigos_postais_pt",
     "setup": {
@@ -19,7 +39,11 @@
         "listener_secret": ""
     },
     "locale": "pt_PT",
-    "remote": {},
+    "remote": {
+        "codigos-postais-gps": {
+            "urlPrefix": "https://www.codigo-postal.pt/"
+        }
+    },
     "commands": [{
         "path": "ui",
         "command": "npm run watch",
