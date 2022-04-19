@@ -115,7 +115,7 @@ Executar a aplicação no terminal dentro da pasta raíz do Netuno com o seguint
 Entrar no PSQL:
 
 ```
-~# sudo -u postgres psql codigos_postais_pt                                            
+~# sudo -u postgres psql codigos_postais_pt
 ```
 
 Realizar a importação do script de base de dados:
@@ -124,3 +124,72 @@ Realizar a importação do script de base de dados:
 codigos_postais_pt=# \i dbs/postgresql-dump.sql
 ```
 
+## Cálculo de distância GPS - Latitude e Longitude
+
+### Função de Base de Dados - PostgreSQL
+
+Para calcular a distância entre os códigos postais através da latitude e longitude, pode ser utilizada a função abaixo para o PostgreSQL:
+
+```
+CREATE OR REPLACE FUNCTION geo_distance(lat1 float, lon1 float, lat2 float, lon2 float, units varchar)
+RETURNS float AS $dist$
+    DECLARE
+        dist float = 0;
+        radlat1 float;
+        radlat2 float;
+        theta float;
+        radtheta float;
+    BEGIN
+        IF lat1 = lat2 OR lon1 = lon2
+            THEN RETURN dist;
+        ELSE
+            radlat1 = pi() * lat1 / 180;
+            radlat2 = pi() * lat2 / 180;
+            theta = lon1 - lon2;
+            radtheta = pi() * theta / 180;
+            dist = sin(radlat1) * sin(radlat2) + cos(radlat1) * cos(radlat2) * cos(radtheta);
+
+            IF dist > 1 THEN dist = 1; END IF;
+
+            dist = acos(dist);
+            dist = dist * 180 / pi();
+            dist = dist * 60 * 1.1515;
+
+            IF units = 'K' THEN dist = dist * 1.609344; END IF;
+            IF units = 'N' THEN dist = dist * 0.8684; END IF;
+
+            RETURN dist;
+        END IF;
+    END;
+$dist$ LANGUAGE plpgsql;
+```
+
+Exemplo de utilização:
+
+```
+SELECT geo_distance(38.703982, -8.948823, 38.704000, -8.949000, 'M'); -- Milhas
+SELECT geo_distance(38.703982, -8.948823, 38.704000, -8.949000, 'K'); -- Quilômetros
+SELECT geo_distance(38.703982, -8.948823, 38.704000, -8.949000, 'N'); -- Milhas Náuticas
+```
+
+> [Fonte.](https://stackoverflow.com/questions/61135374/postgresql-calculate-distance-between-two-points-without-using-postgis)
+
+### JavaScript
+
+Para calcular a distância entre os códigos postais através da latitude e longitude, pode ser utilizada a biblioteca abaixo:
+
+```
+npm install -S mt-latlon
+```
+
+Exemplo de código:
+
+```
+const LatLon = require('mt-latlon');
+
+const cp1 = new LatLon(38.703982, -8.948823);
+const cp2 = new LatLon(38.704000, -8.949000);
+const dist = cp1.distanceTo(cp2);
+```
+
+> [Fonte.](https://www.npmjs.com/package/mt-latlon)
