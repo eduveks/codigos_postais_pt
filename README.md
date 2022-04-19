@@ -2,6 +2,8 @@
 
 Base de dados dos códigos postais de Portugal, com interface web e pesquisas.
 
+Contém a informação GPS, latitude e longitude, de todos os códigos postais de Portugal.
+
 ### Administração - Dashboard
 
 Na área reservada disponibilia a tabela de consulta geral de todos os dados:
