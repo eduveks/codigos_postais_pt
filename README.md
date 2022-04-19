@@ -105,3 +105,20 @@ Executar a aplicação no terminal dentro da pasta raíz do Netuno com o seguint
 ```
 ./netuno server app=codigos_postais_pt
 ```
+
+## Importação da Base de Dados
+
+##### Debian/Ubuntu:
+
+Entrar no PSQL:
+
+```
+~# sudo -u postgres psql codigos_postais_pt                                            
+```
+
+Realizar a importação do script de base de dados:
+
+```
+codigos_postais_pt=# \i dbs/postgresql-dump.sql
+```
+
