@@ -7,7 +7,7 @@ if (_env.is("dev")) {
 }
 
 
-if (_service.startsWith('public/')) {
+if (_service.indexOf('public/') == 0) {
     _service.allow()
 }
 
