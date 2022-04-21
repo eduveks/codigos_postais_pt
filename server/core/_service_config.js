@@ -6,8 +6,8 @@ if (_env.is("dev")) {
     _service.allow()
 }
 
-/*
-if (_service.path == 'samples/my-service') {
+
+if (_service.startsWith('public/')) {
     _service.allow()
 }
-*/
+
